@@ -261,7 +261,7 @@ elements.errorTopButton.addEventListener("click", () => {
 
 async function initialize() {
   try {
-    const response = await fetch("data/acts.json");
+    const response = await fetch(`data/acts.json?v=${APP_VERSION}`); // same cache-bust as the other assets
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
     const data = await response.json();
     if (!Array.isArray(data.acts)) throw new Error("invalid data");
