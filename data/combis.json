@@ -1,0 +1,221 @@
+{
+ "combis": {
+  "DonDokoDon": {
+   "reading": "どんどこどん",
+   "aliases": [],
+   "reading_source": "wikipedia"
+  },
+  "おぎやはぎ": {
+   "reading": "おぎやはぎ",
+   "aliases": [],
+   "reading_source": "kana"
+  },
+  "くらげ": {
+   "reading": "くらげ",
+   "aliases": [],
+   "reading_source": "kana"
+  },
+  "さや香": {
+   "reading": "さやか",
+   "aliases": [],
+   "reading_source": "wikipedia"
+  },
+  "さらば青春の光": {
+   "reading": "さらばせいしゅんのひかり",
+   "aliases": [
+    "さらば"
+   ],
+   "reading_source": "wikipedia"
+  },
+  "たくろう": {
+   "reading": "たくろう",
+   "aliases": [],
+   "reading_source": "kana"
+  },
+  "とろサーモン": {
+   "reading": "とろさーもん",
+   "aliases": [],
+   "reading_source": "kana"
+  },
+  "ぺこぱ": {
+   "reading": "ぺこぱ",
+   "aliases": [],
+   "reading_source": "kana"
+  },
+  "ますだおかだ": {
+   "reading": "ますだおかだ",
+   "aliases": [],
+   "reading_source": "kana"
+  },
+  "めぞん": {
+   "reading": "めぞん",
+   "aliases": [],
+   "reading_source": "kana"
+  },
+  "アメリカザリガニ": {
+   "reading": "あめりかざりがに",
+   "aliases": [
+    "アメザリ"
+   ],
+   "reading_source": "kana"
+  },
+  "ウエストランド": {
+   "reading": "うえすとらんど",
+   "aliases": [],
+   "reading_source": "kana"
+  },
+  "エバース": {
+   "reading": "えばーす",
+   "aliases": [],
+   "reading_source": "kana"
+  },
+  "オズワルド": {
+   "reading": "おずわるど",
+   "aliases": [],
+   "reading_source": "kana"
+  },
+  "オードリー": {
+   "reading": "おーどりー",
+   "aliases": [],
+   "reading_source": "kana"
+  },
+  "カベポスター": {
+   "reading": "かべぽすたー",
+   "aliases": [],
+   "reading_source": "kana"
+  },
+  "キングコング": {
+   "reading": "きんぐこんぐ",
+   "aliases": [],
+   "reading_source": "kana"
+  },
+  "サンドウィッチマン": {
+   "reading": "さんどうぃっちまん",
+   "aliases": [
+    "サンド"
+   ],
+   "reading_source": "kana"
+  },
+  "ジャルジャル": {
+   "reading": "じゃるじゃる",
+   "aliases": [],
+   "reading_source": "kana"
+  },
+  "スリムクラブ": {
+   "reading": "すりむくらぶ",
+   "aliases": [],
+   "reading_source": "kana"
+  },
+  "スーパーマラドーナ": {
+   "reading": "すーぱーまらどーな",
+   "aliases": [
+    "マラドーナ"
+   ],
+   "reading_source": "kana"
+  },
+  "タイムマシーン3号": {
+   "reading": "たいむましーんさんごう",
+   "aliases": [
+    "タイムマシーン"
+   ],
+   "reading_source": "wikipedia"
+  },
+  "チュートリアル": {
+   "reading": "ちゅーとりある",
+   "aliases": [],
+   "reading_source": "kana"
+  },
+  "テツandトモ": {
+   "reading": "てつあんどとも",
+   "aliases": [
+    "テツ&トモ"
+   ],
+   "reading_source": "wikipedia"
+  },
+  "トム・ブラウン": {
+   "reading": "とむぶらうん",
+   "aliases": [],
+   "reading_source": "kana"
+  },
+  "ドンデコルテ": {
+   "reading": "どんでこるて",
+   "aliases": [],
+   "reading_source": "kana"
+  },
+  "ナイツ": {
+   "reading": "ないつ",
+   "aliases": [],
+   "reading_source": "kana"
+  },
+  "ハリガネロック": {
+   "reading": "はりがねろっく",
+   "aliases": [],
+   "reading_source": "kana"
+  },
+  "フットボールアワー": {
+   "reading": "ふっとぼーるあわー",
+   "aliases": [
+    "フット"
+   ],
+   "reading_source": "kana"
+  },
+  "マヂカルラブリー": {
+   "reading": "まぢかるらぶりー",
+   "aliases": [
+    "マヂラブ"
+   ],
+   "reading_source": "kana"
+  },
+  "ミルクボーイ": {
+   "reading": "みるくぼーい",
+   "aliases": [],
+   "reading_source": "kana"
+  },
+  "ヤーレンズ": {
+   "reading": "やーれんず",
+   "aliases": [],
+   "reading_source": "kana"
+  },
+  "中川家": {
+   "reading": "なかがわけ",
+   "aliases": [],
+   "reading_source": "wikipedia"
+  },
+  "和牛": {
+   "reading": "わぎゅう",
+   "aliases": [],
+   "reading_source": "wikipedia"
+  },
+  "東京ホテイソン": {
+   "reading": "とうきょうほていそん",
+   "aliases": [
+    "ホテイソン"
+   ],
+   "reading_source": "wikipedia"
+  },
+  "真空ジェシカ": {
+   "reading": "しんくうじぇしか",
+   "aliases": [
+    "真空"
+   ],
+   "reading_source": "wikipedia"
+  },
+  "笑い飯": {
+   "reading": "わらいめし",
+   "aliases": [],
+   "reading_source": "wikipedia"
+  },
+  "錦鯉": {
+   "reading": "にしきごい",
+   "aliases": [],
+   "reading_source": "wikipedia"
+  },
+  "霜降り明星": {
+   "reading": "しもふりみょうじょう",
+   "aliases": [
+    "霜降り"
+   ],
+   "reading_source": "wikipedia"
+  }
+ }
+}
