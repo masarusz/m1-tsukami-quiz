@@ -41,7 +41,8 @@ button {
 }
 
 button:focus-visible,
-a:focus-visible {
+a:focus-visible,
+input:focus-visible {
   outline: 3px solid var(--focus);
   outline-offset: 3px;
 }
@@ -97,13 +98,19 @@ h2 {
   font-weight: 650;
 }
 
-.era-picker {
+.era-picker,
+.mode-picker {
   margin: 0;
   padding: 0;
   border: 0;
 }
 
-.era-picker legend {
+.mode-picker {
+  margin-top: 18px;
+}
+
+.era-picker legend,
+.mode-picker legend {
   margin-bottom: 8px;
   font-weight: 700;
 }
@@ -118,7 +125,12 @@ h2 {
   background: var(--surface-strong);
 }
 
-.era-button {
+.mode-segments {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.era-button,
+.mode-button {
   min-width: 0;
   padding: 8px 4px;
   border: 0;
@@ -128,7 +140,8 @@ h2 {
   font-weight: 700;
 }
 
-.era-button.is-selected {
+.era-button.is-selected,
+.mode-button.is-selected {
   background: var(--surface);
   box-shadow: 0 2px 8px rgb(48 30 13 / 14%);
   color: var(--accent);
@@ -221,6 +234,37 @@ h2 {
   gap: 10px;
 }
 
+.hard-answer-form {
+  display: grid;
+  gap: 10px;
+}
+
+.hard-answer-form label {
+  font-weight: 800;
+}
+
+.hard-answer-form input {
+  width: 100%;
+  min-height: 48px;
+  padding: 10px 12px;
+  border: 2px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface);
+  color: var(--text);
+  font: inherit;
+  font-size: 16px;
+}
+
+.hard-answer-form input:disabled {
+  opacity: 0.65;
+}
+
+.hard-answer-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
 .choice-button {
   border: 2px solid var(--border);
   background: var(--surface);
@@ -265,8 +309,50 @@ h2 {
   text-underline-offset: 3px;
 }
 
-.next-button {
-  margin-top: 20px;
+body.has-feedback {
+  padding-bottom: min(25vh, 200px);
+}
+
+.feedback-bar {
+  position: fixed;
+  z-index: 10;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  max-height: min(25vh, 200px);
+  overflow-y: auto;
+  padding: 10px max(16px, env(safe-area-inset-right)) max(10px, env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left));
+  border-top: 2px solid var(--accent);
+  background: var(--surface);
+  box-shadow: 0 -8px 24px rgb(69 42 17 / 16%);
+}
+
+.feedback-content {
+  width: min(100%, 560px);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(112px, 0.42fr);
+  align-items: center;
+  gap: 12px;
+}
+
+.feedback-copy {
+  min-width: 0;
+}
+
+.feedback-copy p {
+  margin: 0;
+  line-height: 1.35;
+}
+
+.feedback-status {
+  font-size: 1.12rem;
+  font-weight: 900;
+}
+
+.feedback-next {
+  align-self: stretch;
 }
 
 .result-score {

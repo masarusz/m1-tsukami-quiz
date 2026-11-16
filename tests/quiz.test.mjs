@@ -106,6 +106,7 @@ test("data validator passes the shipped data and rejects required invalid cases"
   const valid = spawnSync(process.execPath, [scriptPath], { encoding: "utf8" });
   assert.equal(valid.status, 0, valid.stderr);
   assert.match(valid.stdout, /acts: [1-9][0-9]* acts, combis: ([4-9]|[1-9][0-9]+) combis/);
+  assert.match(valid.stdout, /readings: [1-9][0-9]* combis/);
 
   const directory = await mkdtemp(join(tmpdir(), "m1-tsukami-test-"));
   t.after(() => rm(directory, { recursive: true, force: true }));

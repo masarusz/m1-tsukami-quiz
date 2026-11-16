@@ -6,7 +6,12 @@
   <meta name="description" content="M-1グランプリ決勝のネタの冒頭からコンビを当てる非公式ファンクイズ">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self'; base-uri 'none'; form-action 'none'">
   <title>漫才つかみクイズ</title>
-  <link rel="stylesheet" href="style.css?v=1.0.1">
+  <link rel="stylesheet" href="style.css?v=1.1.0">
+  <!-- Icons are cache-busted by file name (icon-v1-*), not ?v=: iOS can ignore icon URLs with a query string. Rename on redesign. -->
+  <link rel="icon" href="icons/icon-v1.svg" type="image/svg+xml">
+  <link rel="icon" href="icons/icon-v1-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="icons/icon-v1-180.png" sizes="180x180">
+  <meta name="apple-mobile-web-app-title" content="つかみクイズ">
 </head>
 <body>
   <main class="app-shell">
@@ -21,6 +26,13 @@
           <button type="button" class="era-button is-selected" data-era="all" aria-pressed="true">全部</button>
           <button type="button" class="era-button" data-era="early" aria-pressed="false">2001–2010</button>
           <button type="button" class="era-button" data-era="modern" aria-pressed="false">2015–</button>
+        </div>
+      </fieldset>
+      <fieldset class="mode-picker">
+        <legend>モード</legend>
+        <div class="segments mode-segments">
+          <button type="button" class="mode-button is-selected" data-mode="normal" aria-pressed="true">ふつう</button>
+          <button type="button" class="mode-button" data-mode="hard" aria-pressed="false">むずかしい</button>
         </div>
       </fieldset>
       <p id="best-score" class="best-score">ベスト: —</p>
@@ -40,13 +52,31 @@
         <p id="current-points" class="points-preview"></p>
       </div>
       <div id="choices" class="choices" aria-label="選択肢"></div>
+      <form id="hard-answer-form" class="hard-answer-form" hidden>
+        <label for="hard-answer-input">コンビ名を入力</label>
+        <input id="hard-answer-input" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" enterkeyhint="done" lang="ja" placeholder="コンビ名（ひらがなでもOK）">
+        <div class="hard-answer-actions">
+          <button id="hard-submit-button" class="primary-button" type="submit">答える</button>
+          <button id="give-up-button" class="secondary-button" type="button">わからない</button>
+        </div>
+      </form>
       <section id="answer-panel" class="answer-panel" aria-labelledby="answer-heading" hidden>
         <h2 id="answer-heading">正解</h2>
         <p id="answer-meta"></p>
         <p id="gained-points"></p>
         <div id="answer-links" class="answer-links"></div>
       </section>
-      <button id="next-button" class="primary-button next-button" type="button" hidden>次へ</button>
+      <section id="feedback-bar" class="feedback-bar" aria-label="解答結果" hidden>
+        <div class="feedback-content">
+          <div class="feedback-copy">
+            <p id="feedback-status" class="feedback-status" aria-live="polite"></p>
+            <p id="feedback-answer"></p>
+            <p id="feedback-yours" hidden></p>
+            <p id="feedback-points"></p>
+          </div>
+          <button id="next-button" class="primary-button feedback-next" type="button">次へ</button>
+        </div>
+      </section>
     </section>
 
     <section id="result-screen" class="screen" aria-labelledby="result-title" hidden>
@@ -73,9 +103,9 @@
   <footer>
     <p>非公式のファンクイズです。M-1グランプリ、朝日放送テレビ、吉本興業ほか関係各社とは関係ありません。</p>
     <p>ネタの台詞はクイズのために各ネタの冒頭数行のみを引用しています。著作権は各演者・権利者に帰属します。出典は各問題の解答に記載しています。</p>
-    <p id="app-version">v1.0.1</p>
+    <p id="app-version">v1.1.0</p>
   </footer>
 
-  <script type="module" src="js/app.js?v=1.0.1"></script>
+  <script type="module" src="js/app.js?v=1.1.0"></script>
 </body>
 </html>
