@@ -81,3 +81,45 @@ test("an answer that is exactly another combi does not pass for a near neighbour
   assert.equal(judge("あいうえか", "あいうえお", near).correct, false, "within tolerance of あいうえお but exactly あいうえか");
   assert.equal(judge("あいうえく", "あいうえお", near).correct, true, "a tie is not blocked: only a strictly closer other combi blocks");
 });
+
+test("an alias typed as its reading passes (しもふり, しんくう, ほていそん)", () => {
+  assert.equal(ok("しもふり", "霜降り明星"), true);
+  assert.equal(ok("シモフリ", "霜降り明星"), true);
+  assert.equal(ok("しんくう", "真空ジェシカ"), true);
+  assert.equal(ok("ほていそん", "東京ホテイソン"), true);
+  assert.equal(ok("しもふ", "霜降り明星"), false); // alias readings are exact, not fuzzy
+});
+
+test("an alias reading only passes for its own combi", () => {
+  let checked = 0;
+  for (const [combi, info] of Object.entries(combis)) {
+    for (const reading of Object.values(info.alias_readings ?? {})) {
+      checked += 1;
+      assert.equal(ok(reading, combi), true, `${reading} → ${combi}`);
+      for (const other of names) if (other !== combi) assert.equal(ok(reading, other), false, `${reading} passed for ${other}`);
+    }
+  }
+  const aliasCount = Object.values(combis).reduce((n, info) => n + info.aliases.length, 0);
+  assert.equal(checked, aliasCount, "every alias has exactly one reading");
+});
+
+test("check_data rejects a kanji alias reading that is not a prefix of the combi reading", async () => {
+  const { spawnSync } = await import("node:child_process");
+  const { mkdtemp, writeFile, rm, readFile: rf } = await import("node:fs/promises");
+  const { tmpdir } = await import("node:os");
+  const { join } = await import("node:path");
+  const { fileURLToPath } = await import("node:url");
+  const root = fileURLToPath(new URL("..", import.meta.url));
+  const dir = await mkdtemp(join(tmpdir(), "m1-alias-"));
+  try {
+    const bad = JSON.parse(await rf(new URL("../data/combis.json", import.meta.url), "utf8"));
+    bad.combis["霜降り明星"].alias_readings["霜降り"] = "しもぶり";
+    const badPath = join(dir, "combis.json");
+    await writeFile(badPath, JSON.stringify(bad));
+    const res = spawnSync(process.execPath, [join(root, "tools/check_data.mjs"), join(root, "data/acts.json"), badPath], { encoding: "utf8" });
+    assert.notEqual(res.status, 0, "a wrong alias reading must fail the data check");
+    assert.match(res.stderr + res.stdout, /alias_readings/);
+  } finally {
+    await rm(dir, { recursive: true, force: true });
+  }
+});

@@ -56,11 +56,19 @@ function normalizedCandidates(combi, info) {
   return [normalize(combi), normalize(info?.reading)].filter(Boolean);
 }
 
+// Aliases match exactly (never fuzzily), by their written form or by their reading,
+// so しもふり finds the alias 霜降り. Readings live in combis.json alias_readings.
+function aliasForms(info) {
+  const aliases = Array.isArray(info?.aliases) ? info.aliases : [];
+  const readings = info?.alias_readings && typeof info.alias_readings === "object" ? Object.values(info.alias_readings) : [];
+  return [...aliases, ...readings].map(normalize).filter(Boolean);
+}
+
 function isExactIdentity(answer, combi, info) {
   const normalizedAnswer = normalize(answer);
   if (!normalizedAnswer) return false;
   return normalizedCandidates(combi, info).includes(normalizedAnswer) ||
-    (Array.isArray(info?.aliases) && info.aliases.some((alias) => normalize(alias) === normalizedAnswer));
+    aliasForms(info).includes(normalizedAnswer);
 }
 
 function bestDistance(answer, combi, info) {
@@ -74,7 +82,7 @@ function bestDistance(answer, combi, info) {
 export function isMatch(answer, combi, info) {
   const normalizedAnswer = normalize(answer);
   if (!normalizedAnswer || !info) return false;
-  if (Array.isArray(info.aliases) && info.aliases.some((alias) => normalize(alias) === normalizedAnswer)) {
+  if (aliasForms(info).includes(normalizedAnswer)) {
     return true;
   }
   const foldedAnswer = fold(normalizedAnswer);

@@ -3,7 +3,7 @@ import { resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const defaultPath = fileURLToPath(new URL("../data/acts.json", import.meta.url));
-const combisPath = fileURLToPath(new URL("../data/combis.json", import.meta.url));
+const combisPath = process.argv[3] ? resolve(process.argv[3]) : fileURLToPath(new URL("../data/combis.json", import.meta.url));
 const filePath = resolve(process.argv[2] ?? defaultPath);
 const problems = [];
 
@@ -114,6 +114,18 @@ for (const [combi, info] of Object.entries(readings)) {
   }
   if (!Array.isArray(info.aliases) || info.aliases.some((alias) => typeof alias !== "string" || alias.trim().length === 0)) {
     problems.push(`${label}.aliases must be an array of non-empty strings`);
+  } else {
+    // Every alias needs a reading. A kanji alias's reading must be a prefix of the
+    // combi's own (sourced) reading, so it cannot drift from it.
+    const readings = info.alias_readings ?? {};
+    for (const alias of info.aliases) {
+      const r = readings[alias];
+      if (typeof r !== "string" || !/^[ぁ-ゖー]+$/u.test(r)) {
+        problems.push(`${label}.alias_readings["${alias}"] must be hiragana`);
+      } else if (/\p{Script=Han}/u.test(alias) && !String(info.reading).startsWith(r)) {
+        problems.push(`${label}.alias_readings["${alias}"] (${r}) must be a prefix of the reading ${info.reading}`);
+      }
+    }
   }
 }
 
