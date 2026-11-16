@@ -1,7 +1,7 @@
-import { judge } from "./match.js?v=1.1.0";
-import { buildRound, filterActs, MAX_POINTS, pointsFor, quoteLine, roundLabel } from "./quiz.js?v=1.1.0";
+import { judge } from "./match.js?v=1.1.1";
+import { buildRound, filterActs, MAX_POINTS, pointsFor, quoteLine, roundLabel } from "./quiz.js?v=1.1.1";
 
-const APP_VERSION = "1.1.0";
+const APP_VERSION = "1.1.1";
 
 const elements = {
   screens: [...document.querySelectorAll(".screen")],

@@ -3,219 +3,280 @@
   "DonDokoDon": {
    "reading": "どんどこどん",
    "aliases": [],
-   "reading_source": "wikipedia"
+   "reading_source": "wikipedia",
+   "alias_readings": {}
   },
   "おぎやはぎ": {
    "reading": "おぎやはぎ",
    "aliases": [],
-   "reading_source": "kana"
+   "reading_source": "kana",
+   "alias_readings": {}
   },
   "くらげ": {
    "reading": "くらげ",
    "aliases": [],
-   "reading_source": "kana"
+   "reading_source": "kana",
+   "alias_readings": {}
   },
   "さや香": {
    "reading": "さやか",
    "aliases": [],
-   "reading_source": "wikipedia"
+   "reading_source": "wikipedia",
+   "alias_readings": {}
   },
   "さらば青春の光": {
    "reading": "さらばせいしゅんのひかり",
    "aliases": [
     "さらば"
    ],
-   "reading_source": "wikipedia"
+   "reading_source": "wikipedia",
+   "alias_readings": {
+    "さらば": "さらば"
+   }
   },
   "たくろう": {
    "reading": "たくろう",
    "aliases": [],
-   "reading_source": "kana"
+   "reading_source": "kana",
+   "alias_readings": {}
   },
   "とろサーモン": {
    "reading": "とろさーもん",
    "aliases": [],
-   "reading_source": "kana"
+   "reading_source": "kana",
+   "alias_readings": {}
   },
   "ぺこぱ": {
    "reading": "ぺこぱ",
    "aliases": [],
-   "reading_source": "kana"
+   "reading_source": "kana",
+   "alias_readings": {}
   },
   "ますだおかだ": {
    "reading": "ますだおかだ",
    "aliases": [],
-   "reading_source": "kana"
+   "reading_source": "kana",
+   "alias_readings": {}
   },
   "めぞん": {
    "reading": "めぞん",
    "aliases": [],
-   "reading_source": "kana"
+   "reading_source": "kana",
+   "alias_readings": {}
   },
   "アメリカザリガニ": {
    "reading": "あめりかざりがに",
    "aliases": [
     "アメザリ"
    ],
-   "reading_source": "kana"
+   "reading_source": "kana",
+   "alias_readings": {
+    "アメザリ": "あめざり"
+   }
   },
   "ウエストランド": {
    "reading": "うえすとらんど",
    "aliases": [],
-   "reading_source": "kana"
+   "reading_source": "kana",
+   "alias_readings": {}
   },
   "エバース": {
    "reading": "えばーす",
    "aliases": [],
-   "reading_source": "kana"
+   "reading_source": "kana",
+   "alias_readings": {}
   },
   "オズワルド": {
    "reading": "おずわるど",
    "aliases": [],
-   "reading_source": "kana"
+   "reading_source": "kana",
+   "alias_readings": {}
   },
   "オードリー": {
    "reading": "おーどりー",
    "aliases": [],
-   "reading_source": "kana"
+   "reading_source": "kana",
+   "alias_readings": {}
   },
   "カベポスター": {
    "reading": "かべぽすたー",
    "aliases": [],
-   "reading_source": "kana"
+   "reading_source": "kana",
+   "alias_readings": {}
   },
   "キングコング": {
    "reading": "きんぐこんぐ",
    "aliases": [],
-   "reading_source": "kana"
+   "reading_source": "kana",
+   "alias_readings": {}
   },
   "サンドウィッチマン": {
    "reading": "さんどうぃっちまん",
    "aliases": [
     "サンド"
    ],
-   "reading_source": "kana"
+   "reading_source": "kana",
+   "alias_readings": {
+    "サンド": "さんど"
+   }
   },
   "ジャルジャル": {
    "reading": "じゃるじゃる",
    "aliases": [],
-   "reading_source": "kana"
+   "reading_source": "kana",
+   "alias_readings": {}
   },
   "スリムクラブ": {
    "reading": "すりむくらぶ",
    "aliases": [],
-   "reading_source": "kana"
+   "reading_source": "kana",
+   "alias_readings": {}
   },
   "スーパーマラドーナ": {
    "reading": "すーぱーまらどーな",
    "aliases": [
     "マラドーナ"
    ],
-   "reading_source": "kana"
+   "reading_source": "kana",
+   "alias_readings": {
+    "マラドーナ": "まらどな"
+   }
   },
   "タイムマシーン3号": {
    "reading": "たいむましーんさんごう",
    "aliases": [
     "タイムマシーン"
    ],
-   "reading_source": "wikipedia"
+   "reading_source": "wikipedia",
+   "alias_readings": {
+    "タイムマシーン": "たいむましん"
+   }
   },
   "チュートリアル": {
    "reading": "ちゅーとりある",
    "aliases": [],
-   "reading_source": "kana"
+   "reading_source": "kana",
+   "alias_readings": {}
   },
   "テツandトモ": {
    "reading": "てつあんどとも",
    "aliases": [
     "テツ&トモ"
    ],
-   "reading_source": "wikipedia"
+   "reading_source": "wikipedia",
+   "alias_readings": {
+    "テツ&トモ": "てつとも"
+   }
   },
   "トム・ブラウン": {
    "reading": "とむぶらうん",
    "aliases": [],
-   "reading_source": "kana"
+   "reading_source": "kana",
+   "alias_readings": {}
   },
   "ドンデコルテ": {
    "reading": "どんでこるて",
    "aliases": [],
-   "reading_source": "kana"
+   "reading_source": "kana",
+   "alias_readings": {}
   },
   "ナイツ": {
    "reading": "ないつ",
    "aliases": [],
-   "reading_source": "kana"
+   "reading_source": "kana",
+   "alias_readings": {}
   },
   "ハリガネロック": {
    "reading": "はりがねろっく",
    "aliases": [],
-   "reading_source": "kana"
+   "reading_source": "kana",
+   "alias_readings": {}
   },
   "フットボールアワー": {
    "reading": "ふっとぼーるあわー",
    "aliases": [
     "フット"
    ],
-   "reading_source": "kana"
+   "reading_source": "kana",
+   "alias_readings": {
+    "フット": "ふっと"
+   }
   },
   "マヂカルラブリー": {
    "reading": "まぢかるらぶりー",
    "aliases": [
     "マヂラブ"
    ],
-   "reading_source": "kana"
+   "reading_source": "kana",
+   "alias_readings": {
+    "マヂラブ": "まぢらぶ"
+   }
   },
   "ミルクボーイ": {
    "reading": "みるくぼーい",
    "aliases": [],
-   "reading_source": "kana"
+   "reading_source": "kana",
+   "alias_readings": {}
   },
   "ヤーレンズ": {
    "reading": "やーれんず",
    "aliases": [],
-   "reading_source": "kana"
+   "reading_source": "kana",
+   "alias_readings": {}
   },
   "中川家": {
    "reading": "なかがわけ",
    "aliases": [],
-   "reading_source": "wikipedia"
+   "reading_source": "wikipedia",
+   "alias_readings": {}
   },
   "和牛": {
    "reading": "わぎゅう",
    "aliases": [],
-   "reading_source": "wikipedia"
+   "reading_source": "wikipedia",
+   "alias_readings": {}
   },
   "東京ホテイソン": {
    "reading": "とうきょうほていそん",
    "aliases": [
     "ホテイソン"
    ],
-   "reading_source": "wikipedia"
+   "reading_source": "wikipedia",
+   "alias_readings": {
+    "ホテイソン": "ほていそん"
+   }
   },
   "真空ジェシカ": {
    "reading": "しんくうじぇしか",
    "aliases": [
     "真空"
    ],
-   "reading_source": "wikipedia"
+   "reading_source": "wikipedia",
+   "alias_readings": {
+    "真空": "しんくう"
+   }
   },
   "笑い飯": {
    "reading": "わらいめし",
    "aliases": [],
-   "reading_source": "wikipedia"
+   "reading_source": "wikipedia",
+   "alias_readings": {}
   },
   "錦鯉": {
    "reading": "にしきごい",
    "aliases": [],
-   "reading_source": "wikipedia"
+   "reading_source": "wikipedia",
+   "alias_readings": {}
   },
   "霜降り明星": {
    "reading": "しもふりみょうじょう",
    "aliases": [
     "霜降り"
    ],
-   "reading_source": "wikipedia"
+   "reading_source": "wikipedia",
+   "alias_readings": {
+    "霜降り": "しもふり"
+   }
   }
  }
 }
