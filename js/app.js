@@ -1,7 +1,7 @@
-import { judge } from "./match.js?v=1.1.1";
-import { buildRound, filterActs, MAX_POINTS, pointsFor, quoteLine, roundLabel } from "./quiz.js?v=1.1.1";
+import { judge } from "./match.js?v=1.1.2";
+import { buildRound, filterActs, MAX_POINTS, pointsFor, quoteLine, roundLabel } from "./quiz.js?v=1.1.2";
 
-const APP_VERSION = "1.1.1";
+const APP_VERSION = "1.1.2";
 
 const elements = {
   screens: [...document.querySelectorAll(".screen")],
@@ -11,6 +11,7 @@ const elements = {
   error: document.querySelector("#error-screen"),
   eraButtons: [...document.querySelectorAll(".era-button")],
   modeButtons: [...document.querySelectorAll(".mode-button")],
+  modeTip: document.querySelector("#mode-tip"),
   bestScore: document.querySelector("#best-score"), startButton: document.querySelector("#start-button"),
   progress: document.querySelector("#progress"), runningScore: document.querySelector("#running-score"),
   quoteList: document.querySelector("#quote-list"), hintArea: document.querySelector("#hint-area"),
@@ -77,6 +78,15 @@ function writeBest(value) {
   } catch {
     // Storage can be unavailable in private or restricted browsing contexts.
   }
+}
+
+const MODE_TIPS = {
+  normal: "4つの選択肢からコンビを選ぶ",
+  hard: "コンビ名を入力。ひらがな・略称・多少の誤字もOK"
+};
+
+function updateModeTip() {
+  elements.modeTip.textContent = MODE_TIPS[selectedMode] ?? MODE_TIPS.normal;
 }
 
 function readMode() {
@@ -312,6 +322,7 @@ elements.modeButtons.forEach((button) => button.addEventListener("click", () => 
   selectedMode = button.dataset.mode;
   selectSegment(elements.modeButtons, button);
   writeMode();
+  updateModeTip();
   updateBestDisplay();
 }));
 
@@ -381,6 +392,7 @@ async function initialize() {
     selectedMode = readMode();
     const selectedModeButton = elements.modeButtons.find((button) => button.dataset.mode === selectedMode);
     if (selectedModeButton) selectSegment(elements.modeButtons, selectedModeButton);
+    updateModeTip();
     elements.version.textContent = `v${typeof actsData.version === "string" ? actsData.version : APP_VERSION}`;
     updateBestDisplay();
   } catch {
