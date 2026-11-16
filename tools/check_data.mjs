@@ -64,8 +64,8 @@ acts.forEach((act, index) => {
   if (act.round !== "first" && act.round !== "final") {
     problems.push(`${label}.round must be "first" or "final"`);
   }
-  if (!Array.isArray(act.lines) || act.lines.length < 1 || act.lines.length > 4) {
-    problems.push(`${label}.lines must contain 1–4 strings`);
+  if (!Array.isArray(act.lines) || act.lines.length < 1 || act.lines.length > 10) {
+    problems.push(`${label}.lines must contain 1–10 strings`);
   } else {
     act.lines.forEach((line, lineIndex) => {
       if (typeof line !== "string" || line.trim().length === 0 || [...line].length > 80) {

@@ -6,7 +6,7 @@ import { spawnSync } from "node:child_process";
 import test from "node:test";
 import { fileURLToPath } from "node:url";
 
-import { buildRound, filterActs, pointsFor, roundLabel } from "../js/quiz.js";
+import { buildRound, filterActs, MAX_POINTS, pointsFor, roundLabel } from "../js/quiz.js";
 
 const combis = ["A", "B", "C", "D", "E", "F", "G", "H"];
 const acts = Array.from({ length: 12 }, (_, index) => ({
@@ -81,9 +81,11 @@ test("filterActs applies era boundaries", () => {
 });
 
 test("pointsFor follows the scoring table", () => {
-  assert.deepEqual([1, 2, 3, 4].map((lines) => pointsFor(lines, true)), [4, 3, 2, 1]);
+  assert.deepEqual([1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((lines) => pointsFor(lines, true)), [10, 9, 8, 7, 6, 5, 4, 3, 2, 1]);
   assert.equal(pointsFor(1, false), 0);
   assert.equal(pointsFor(4, false), 0);
+  assert.equal(pointsFor(10, false), 0);
+  assert.equal(MAX_POINTS, 10);
 });
 
 test("roundLabel renders Japanese labels", () => {
@@ -111,10 +113,17 @@ test("data validator passes the shipped data and rejects required invalid cases"
   const cases = [
     ["duplicate-id", (data) => { data.acts[1].id = data.acts[0].id; }],
     ["invalid-round", (data) => { data.acts[0].round = "semi"; }],
-    ["five-lines", (data) => { data.acts[0].lines = ["1", "2", "3", "4", "5"]; }],
+    ["eleven-lines", (data) => { data.acts[0].lines = Array.from({ length: 11 }, (_, i) => String(i + 1)); }],
     ["http-source", (data) => { data.acts[0].source_url = "http://example.com/source"; }],
     ["year-2012", (data) => { data.acts[0].year = 2012; }]
   ];
+
+  const tenLines = structuredClone(sample);
+  tenLines.acts[0].lines = Array.from({ length: 10 }, (_, i) => `line ${i + 1}`);
+  const tenPath = join(directory, "ten-lines.json");
+  await writeFile(tenPath, JSON.stringify(tenLines), "utf8");
+  const tenResult = spawnSync(process.execPath, [scriptPath, tenPath], { encoding: "utf8" });
+  assert.equal(tenResult.status, 0, `10 lines should pass: ${tenResult.stderr}`);
 
   for (const [name, mutate] of cases) {
     const data = structuredClone(sample);

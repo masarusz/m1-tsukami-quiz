@@ -48,8 +48,12 @@ export function buildRound(acts, rng = Math.random, size = 10) {
   });
 }
 
+export const MAX_LINES = 10;
+export const MAX_POINTS = MAX_LINES;
+
+// 1 line shown = MAX_POINTS, each extra line costs 1, all 10 lines = 1 point.
 export function pointsFor(linesShown, correct) {
-  return correct ? Math.max(0, 5 - linesShown) : 0;
+  return correct ? Math.max(1, MAX_POINTS + 1 - linesShown) : 0;
 }
 
 export function roundLabel(round) {

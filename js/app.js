@@ -1,4 +1,4 @@
-import { buildRound, filterActs, pointsFor, roundLabel } from "./quiz.js?v=1.0.0";
+import { buildRound, filterActs, MAX_POINTS, pointsFor, roundLabel } from "./quiz.js?v=1.0.0";
 
 const APP_VERSION = "1.0.0";
 
@@ -89,6 +89,15 @@ function renderLines(count) {
     item.textContent = `「${line}」`;
     elements.quoteList.append(item);
   }
+}
+
+// With up to 10 revealed lines the choices drift below the fold on a phone.
+// Bring the last choice to the bottom edge; the newest line stays just above the hint button.
+function keepChoicesInView() {
+  const choices = elements.choices.querySelectorAll("button");
+  const last = choices[choices.length - 1];
+  if (!last || last.getBoundingClientRect().bottom <= window.innerHeight) return;
+  last.scrollIntoView({ block: "end", behavior: "auto" });
 }
 
 function updateHintStatus() {
@@ -193,7 +202,7 @@ function showResults() {
   const isNewBest = previousBest === null || score > previousBest;
   if (isNewBest) writeBest(score);
 
-  elements.resultScore.textContent = `${score} / ${questions.length * 4}点`;
+  elements.resultScore.textContent = `${score} / ${questions.length * MAX_POINTS}点`;
   elements.resultCorrect.textContent = `${questions.length}問中 ${correctCount}問正解`;
   elements.bestUpdated.hidden = !isNewBest;
   elements.resultList.replaceChildren();
@@ -228,6 +237,7 @@ elements.hintButton.addEventListener("click", () => {
     linesShown += 1;
     renderLines(linesShown);
     updateHintStatus();
+    keepChoicesInView();
   }
 });
 elements.nextButton.addEventListener("click", () => {
