@@ -6,7 +6,7 @@ import { spawnSync } from "node:child_process";
 import test from "node:test";
 import { fileURLToPath } from "node:url";
 
-import { buildRound, filterActs, MAX_POINTS, pointsFor, roundLabel } from "../js/quiz.js";
+import { buildRound, filterActs, MAX_POINTS, pointsFor, quoteLine, roundLabel } from "../js/quiz.js";
 
 const combis = ["A", "B", "C", "D", "E", "F", "G", "H"];
 const acts = Array.from({ length: 12 }, (_, index) => ({
@@ -134,4 +134,18 @@ test("data validator passes the shipped data and rejects required invalid cases"
     assert.notEqual(result.status, 0, `${name} unexpectedly passed`);
     assert.match(result.stderr, /ERROR:/);
   }
+});
+
+test("quoteLine wraps plain lines and leaves lines that open with their own 「 alone", async () => {
+  assert.equal(quoteLine("あのさ"), "「あのさ」");
+  assert.equal(quoteLine("「彼氏いる」って言っちゃったらしくて、"), "「彼氏いる」って言っちゃったらしくて、");
+  assert.equal(quoteLine("「もし15年後の今日、"), "「もし15年後の今日、");
+  assert.equal(quoteLine("（歩きながら）国際交流"), "「（歩きながら）国際交流」");
+  assert.equal(quoteLine("『どこでしたっけ』あれへんがな"), "「『どこでしたっけ』あれへんがな」");
+  // Shipped data: no rendered line ever starts with a doubled 「「.
+  const data = JSON.parse(await readFile(new URL("../data/acts.json", import.meta.url), "utf8"));
+  const rendered = data.acts.flatMap((act) => act.lines.map(quoteLine));
+  const openers = data.acts.flatMap((act) => act.lines).filter((line) => line.startsWith("「")).length;
+  assert.ok(openers > 0, `precondition: some shipped lines open with 「 (found ${openers} lines)`);
+  assert.equal(rendered.filter((line) => line.startsWith("「「")).length, 0);
 });

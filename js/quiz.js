@@ -56,6 +56,13 @@ export function pointsFor(linesShown, correct) {
   return correct ? Math.max(1, MAX_POINTS + 1 - linesShown) : 0;
 }
 
+// Display only: a line that already opens with its own 「 (reported speech, e.g.
+// 「彼氏いる」って言っちゃった) is shown as-is, otherwise wrapping it gives 「「…」.
+// The stored line is never changed, so the verbatim source check still holds.
+export function quoteLine(line) {
+  return line.startsWith("「") ? line : `「${line}」`;
+}
+
 export function roundLabel(round) {
   return round === "first" ? "1stラウンド" : "最終決戦";
 }

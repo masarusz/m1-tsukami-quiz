@@ -1,6 +1,6 @@
-import { buildRound, filterActs, MAX_POINTS, pointsFor, roundLabel } from "./quiz.js?v=1.0.0";
+import { buildRound, filterActs, MAX_POINTS, pointsFor, quoteLine, roundLabel } from "./quiz.js?v=1.0.1";
 
-const APP_VERSION = "1.0.0";
+const APP_VERSION = "1.0.1";
 
 const elements = {
   screens: [...document.querySelectorAll(".screen")],
@@ -86,7 +86,7 @@ function renderLines(count) {
   for (const line of lines.slice(0, count)) {
     const item = document.createElement("li");
     item.className = "quote-card";
-    item.textContent = `「${line}」`;
+    item.textContent = quoteLine(line);
     elements.quoteList.append(item);
   }
 }
