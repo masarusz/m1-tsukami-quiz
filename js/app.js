@@ -119,11 +119,19 @@ function renderLines(count) {
   }
 }
 
-function keepChoicesInView() {
-  const choices = elements.choices.querySelectorAll("button");
-  const last = choices[choices.length - 1];
-  if (!last || last.getBoundingClientRect().bottom <= window.innerHeight) return;
-  last.scrollIntoView({ block: "end", behavior: "auto" });
+// With up to 10 revealed lines the answer controls drift below the fold on a phone.
+// Bring the bottom of whatever is answering (last choice, or the hard-mode form with
+// its わからない button) to the bottom edge; the newest line stays just above.
+function keepAnswerControlsInView() {
+  let target;
+  if (selectedMode === "hard") {
+    target = elements.hardForm;
+  } else {
+    const choices = elements.choices.querySelectorAll("button");
+    target = choices[choices.length - 1];
+  }
+  if (!target || target.getBoundingClientRect().bottom <= window.innerHeight) return;
+  target.scrollIntoView({ block: "end", behavior: "auto" });
 }
 
 function updateHintStatus() {
@@ -314,8 +322,8 @@ elements.hintButton.addEventListener("click", () => {
     linesShown += 1;
     renderLines(linesShown);
     updateHintStatus();
-    if (selectedMode === "hard") elements.hardInput.focus();
-    else keepChoicesInView();
+    if (selectedMode === "hard") elements.hardInput.focus({ preventScroll: true });
+    keepAnswerControlsInView();
   }
 });
 elements.hardInput.addEventListener("compositionstart", () => { hardComposing = true; });
