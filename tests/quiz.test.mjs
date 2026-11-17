@@ -6,7 +6,7 @@ import { spawnSync } from "node:child_process";
 import test from "node:test";
 import { fileURLToPath } from "node:url";
 
-import { buildRound, filterActs, MAX_POINTS, pointsFor, quoteLine, roundLabel } from "../js/quiz.js";
+import { buildRound, filterActs, isAizuchi, MAX_POINTS, pointsFor, quoteLine, revealCount, roundLabel } from "../js/quiz.js";
 
 const combis = ["A", "B", "C", "D", "E", "F", "G", "H"];
 const acts = Array.from({ length: 12 }, (_, index) => ({
@@ -81,11 +81,44 @@ test("filterActs applies era boundaries", () => {
 });
 
 test("pointsFor follows the scoring table", () => {
-  assert.deepEqual([1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((lines) => pointsFor(lines, true)), [10, 9, 8, 7, 6, 5, 4, 3, 2, 1]);
-  assert.equal(pointsFor(1, false), 0);
+  assert.deepEqual([0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map((hints) => pointsFor(hints, true)), [10, 9, 8, 7, 6, 5, 4, 3, 2, 1]);
+  assert.equal(pointsFor(0, false), 0);
   assert.equal(pointsFor(4, false), 0);
-  assert.equal(pointsFor(10, false), 0);
+  assert.equal(pointsFor(9, false), 0);
   assert.equal(MAX_POINTS, 10);
+});
+
+test("isAizuchi accepts single and concatenated backchannels", () => {
+  for (const line of ["うん", "はいはいはい！", "ああ、そう", "あぁそう", "え？"]) {
+    assert.equal(isAizuchi(line), true, line);
+  }
+});
+
+test("isAizuchi rejects short content lines", () => {
+  for (const line of ["違う", "なんや", "ある", "あのさ", "確かにな", "いや行けよ", "あーそうです。"]) {
+    assert.equal(isAizuchi(line), false, line);
+  }
+});
+
+test("revealCount skips one following backchannel", () => {
+  assert.equal(revealCount(["最初", "うん", "次の内容"], 1), 3);
+});
+
+test("revealCount skips a chain of backchannels to the next content line", () => {
+  assert.equal(revealCount(["最初", "はい", "ああ、そう", "え？", "次の内容", "続き"], 1), 5);
+});
+
+test("revealCount reveals all remaining backchannels", () => {
+  assert.equal(revealCount(["最初", "うん", "はいはい", "あぁそう"], 1), 4);
+});
+
+test("revealCount reveals only one short non-backchannel line", () => {
+  assert.equal(revealCount(["最初", "違う", "次の内容"], 1), 2);
+});
+
+test("revealCount stays at the end", () => {
+  const lines = ["最初", "うん"];
+  assert.equal(revealCount(lines, lines.length), lines.length);
 });
 
 test("roundLabel renders Japanese labels", () => {
