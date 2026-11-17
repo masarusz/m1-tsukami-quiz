@@ -1,7 +1,7 @@
-import { judge } from "./match.js?v=1.1.3";
-import { buildRound, filterActs, MAX_POINTS, pointsFor, quoteLine, roundLabel } from "./quiz.js?v=1.1.3";
+import { judge } from "./match.js?v=1.2.0";
+import { buildRound, filterActs, MAX_POINTS, pointsFor, quoteLine, revealCount, roundLabel } from "./quiz.js?v=1.2.0";
 
-const APP_VERSION = "1.1.3";
+const APP_VERSION = "1.2.0";
 
 const elements = {
   screens: [...document.querySelectorAll(".screen")],
@@ -38,6 +38,7 @@ let selectedMode = "normal";
 let questions = [];
 let questionIndex = 0;
 let linesShown = 1;
+let hintsUsed = 0;
 let score = 0;
 let correctCount = 0;
 let answered = false;
@@ -149,7 +150,7 @@ function updateHintStatus() {
   const remaining = Math.max(0, lineCount - linesShown);
   elements.hintButton.disabled = remaining === 0;
   elements.linesLeft.textContent = `あと ${remaining} 行`;
-  elements.currentPoints.textContent = `正解で +${pointsFor(linesShown, true)} 点`;
+  elements.currentPoints.textContent = `正解で +${pointsFor(hintsUsed, true)} 点`;
 }
 
 function resetHardControls() {
@@ -163,6 +164,7 @@ function renderQuestion() {
   hideFeedback();
   answered = false;
   linesShown = 1;
+  hintsUsed = 0;
   const question = questions[questionIndex];
   elements.progress.textContent = `${questionIndex + 1} / ${questions.length}`;
   elements.runningScore.textContent = `${score}点`;
@@ -220,7 +222,7 @@ function finishAnswer({ correct, kind, typedAnswer = "", chosenButton = null }) 
   if (answered) return;
   answered = true;
   const { act } = questions[questionIndex];
-  const gained = pointsFor(linesShown, correct);
+  const gained = pointsFor(hintsUsed, correct);
   score += gained;
   if (correct) correctCount += 1;
 
@@ -328,9 +330,11 @@ elements.modeButtons.forEach((button) => button.addEventListener("click", () => 
 
 elements.startButton.addEventListener("click", startGame);
 elements.hintButton.addEventListener("click", () => {
-  const lineCount = questions[questionIndex].act.lines.length;
+  const { lines } = questions[questionIndex].act;
+  const lineCount = lines.length;
   if (!answered && linesShown < lineCount) {
-    linesShown += 1;
+    hintsUsed += 1;
+    linesShown = revealCount(lines, linesShown);
     renderLines(linesShown);
     updateHintStatus();
     if (selectedMode === "hard") elements.hardInput.focus({ preventScroll: true });
